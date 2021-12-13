@@ -1,12 +1,12 @@
 <?php
 
 /*
-Plugin Name: ACF: MTD Extend Fields
-Plugin URI: PLUGIN_URL
+Plugin Name: ACF: MTD Extended Fields
+Plugin URI: https://github.com/galawar/acf-mtd-extends
 Description: MTD Extend Fields for Advanced Custom Fields
-Version: 1.0.0
+Version: 1.0.1
 Author: galawar
-Author URI: galawarz@gmail.com
+Author URI: https://github.com/galawar
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
