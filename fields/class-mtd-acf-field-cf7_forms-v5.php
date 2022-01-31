@@ -124,45 +124,51 @@ class mtd_acf_field_cf7_forms extends acf_field {
 		//echo '</pre>';
 		
 		/*
-		*  Create a simple text input using the 'font_size' setting.
+		*  Create a select input with options.
 		*/
-		$cf7_posts = get_posts( array(
-			'post_type'   => 'wpcf7_contact_form',
-			'numberposts' => - 1
-		) );
+		if ( in_array( 'contact-form-7/wp-contact-form-7.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			$cf7_posts = get_posts( array(
+				'post_type'   => 'wpcf7_contact_form',
+				'numberposts' => - 1
+			) );
 
-		if ( empty( $cf7_posts ) ) {
-			$cf7_forms = __( 'No contact forms were found. Create a contact form first.', 'mtd' );
-		} else {
-			foreach ( $cf7_posts as $post ) {
-				setup_postdata( $post );
-				$cf7_forms[] = array(
-					'id' => $post->ID,
-					'title' => $post->post_title,
-					'code' => "[contact-form-7 id='$post->ID' title='$post->post_title']"
-				);
+			if ( empty( $cf7_posts ) ) {
+				$cf7_forms = __( 'No contact forms were found. Create a contact form first.', 'mtd' );
+			} else {
+				foreach ( $cf7_posts as $post ) {
+					setup_postdata( $post );
+					$cf7_forms[] = array(
+						'id' => $post->ID,
+						'title' => $post->post_title,
+						'code' => "[contact-form-7 id='$post->ID' title='$post->post_title']"
+					);
+				}
+				wp_reset_postdata();
 			}
-			wp_reset_postdata();
-		}
 
-		if ( is_array( $cf7_forms ) ) { ?>
+			if ( is_array( $cf7_forms ) ) { ?>
 
-			<select name='<?php echo $field['name'] ?>' placeholder='Select the form...'>
-				<option value="null"><?php echo __( 'Select the form...', 'mtd' ); ?></option>
+				<select name='<?php echo $field['name'] ?>' placeholder='Select the form...'>
+					<option value="null"><?php echo __( 'Select the form...', 'mtd' ); ?></option>
 
-				<?php foreach ( $cf7_forms as $form ) { ?>
+					<?php foreach ( $cf7_forms as $form ) { ?>
 
-					<option <?php selected( $field['value'], $form['code'] ); ?> value="<?php echo $form['code']; ?>">
-						<?php echo $form['title']; ?>
-					</option>
+						<option <?php selected( $field['value'], $form['code'] ); ?> value="<?php echo $form['code']; ?>">
+							<?php echo $form['title']; ?>
+						</option>
 
-				<?php } ?>
+					<?php } ?>
 
-			</select>
+				</select>
 
-		<?php
+			<?php
+			} else {
+				echo "<p>$cf7_forms</p>";
+			}
 		} else {
-			echo "<p>$cf7_forms</p>";
+			?>
+			<p>Plugin "Contact Form 7" is not installed.</p>
+			<?php
 		}
 	}
 

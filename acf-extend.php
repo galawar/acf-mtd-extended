@@ -40,7 +40,7 @@ class mtd_acf_plugin_extend {
 		// settings
 		// - these will be passed into the field class.
 		$this->settings = array(
-			'version' => '1.0.0',
+			'version' => '1.0.2',
 			'url'     => plugin_dir_url( __FILE__ ),
 			'path'    => plugin_dir_path( __FILE__ )
 		);
