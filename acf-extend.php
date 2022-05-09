@@ -40,7 +40,7 @@ class mtd_acf_plugin_extend {
 		// settings
 		// - these will be passed into the field class.
 		$this->settings = array(
-			'version' => '1.0.2',
+			'version' => '2.0.2',
 			'url'     => plugin_dir_url( __FILE__ ),
 			'path'    => plugin_dir_path( __FILE__ )
 		);
@@ -77,6 +77,7 @@ class mtd_acf_plugin_extend {
 		
 		// include
 		include_once('fields/class-mtd-acf-field-cf7_forms-v' . $version . '.php');
+		include_once('fields/class-mtd-acf-field-gravity_forms-v' . $version . '.php');
 	}
 	
 }
